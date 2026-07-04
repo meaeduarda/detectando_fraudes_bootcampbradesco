@@ -1,0 +1,72 @@
+Det4eccao de fraudes em transações bancarias 
+Professora: Isadora Garcia Ferrão
+
+Analise de dados
+Biblioteca do pandas 
+Dataset online  creditcard.csv
+
+usar o df = pd.read_csv(url)
+Usar uma coluna se é fraudulenta ou não
+Identificar padrões de dados históricos e comportamentos anômalos 
+posteriormente seguir o pipeline e logica de detecção
+
+Cada linha representa uma transação financeira feita com cartão de credito 
+a coluna time - momento da transaão - variável numérica
+as colunas v1 até v28 são variáveis transformadas - Tecnicas de PCA para privacidade
+- A penúltima coluna é a Amount ( valor da transação) fraldes pode ter padrões especifica de valor 
+- A coluna class infica não fraudulenta e 1 significa fralde
+
+Como um analista de dados identifica padrões de transações normais das fraldulentas 
+- intervalois de tempo ?
+- Apresentação padrões?
+- são valores semelhantes ?
+- Vericiar balanceamento das classes?
+
+Classificação balanceada
+
+df ["Class"].value_counts (normalize = True)
+
+- Calcular a proporção de cada tipo de ações
+-  Como verificar se o data set é desbalanceado?
+- Um modelo pode aprender errado - ele vai acertar 99 procento das vezes, mas nunca detecta fralde. A Kuracia é a porcentagem de acertos - Ela acerta, mas é enfanosa. Por isso usa-se outras métricas o recall usada como métrica. E A Precision tambem. Feature Engineering ?
+
+- Nem sempre as variáveis são suficientes, as vezes precisamos criar novas variáveis e que vão nos ajudar a tomar decisões. A ideia é transformar os dados brutos em formação que seja util. O modelo não entende o contexto, ele aprende por modelos matemáticos - a Feature Engenniring é o processo de criar e transformar variáveis para adaptar o modelo 
+
+import numpy as np
+df["Amount_log"]= np.log1p(df["Amount"])
+
+Porquer usar o log1p?
+Em dados financeiros é normal ter valores muito diferentes em escalas entre si
+
+O que o sklearn.preprocessing (
+
+from sklear.proprocessing import StandardScaler
+
+scaler - StandardScaler()
+
+Muitos modelos de Marching Learning trabalham com isso - padronização dos dados para uma escala comum 
+
+Treinar o modelo e separar as variáveis em X e Y 
+
+from sklaearn.model_selection import train)test_slit
+
+x = df.dro ("Class", axis = 1)
+y - df ["Class"]
+
+x_train, x_teste, ytrain,ytest = train_test_slit (x,y,stratify =y, teste_size = 0.3) ...
+
+===========
+Logisti Regression - Que é o modelo de classificação = para prever categorias para saber se transação é fralde classe 1 e não fralde classe 2 - Regressão logística 
+
+- Modelo que serve de referencia para os outros modelos
+- Parâmetros max itens 
+model fit para o modelo aprender padrões e envontrar padrçoes 
+- usar o model predict onde faz previsão dos dados que nunca viu 
+- Cllassification report - Para transações e fraldes. O nosso foco é a classe 1
+- Uso do ROC Curv para mostrar os False Positive Rate 
+- A nossa curva ROC 
+- Balanceamento de dados 
+- Uso das metricas Pessicion_recall_curve - que é a metrica ainda mais importante para fraldes desbalanceadas
+- Usar tecnicas de baçanceamento de dados 
+
+IMPORTANTE: Comentar quando necessario as partes importantes do projeto.
